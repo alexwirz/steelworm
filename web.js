@@ -16,7 +16,7 @@ app.post('/', function(request, response) {
 
 app.get('/ip', function(request, response) {
 	var ip = request.connection.remoteAddress;
-	var city = new geoip.City('/Users/alexanderwirz/Downloads/GeoLiteCity.dat');
+	var city = new geoip.City('GeoLiteCity.dat');
 	var clientCity = city.lookupSync (ip);
 	console.log(clientCity);
 	if (clientCity == null) {
