@@ -18,7 +18,7 @@ app.get('/ip', function(request, response) {
 	//var ip = request.connection.remoteAddress;
 	var ip = request.headers["x-forwarded-for"];
 	if (ip){
-		var list = ipAddr.split(",");
+		var list = ip.split(",");
 		ip = list[list.length-1];
 	} else {
 		ip = request.connection.remoteAddress;
