@@ -15,7 +15,15 @@ app.post('/', function(request, response) {
 });
 
 app.get('/ip', function(request, response) {
-	var ip = request.connection.remoteAddress;
+	//var ip = request.connection.remoteAddress;
+	var ip = request.headers["x-forwarded-for"];
+	if (ip){
+		var list = ipAddr.split(",");
+		ip = list[list.length-1];
+	} else {
+		ip = request.connection.remoteAddress;
+	}
+
 	var city = new geoip.City('GeoLiteCity.dat');
 	var clientCity = city.lookupSync (ip);
 	console.log(clientCity);
