@@ -1,0 +1,5 @@
+language: node_js
+node_js:
+- '0.10'
+dd:
+  secure: ViKJ58wlcRNPUbp+YcOWZFAjsgGq9XOLUnrLy8NUuMJG8AHiQhnH8jiYVBRfzx+/1dE9lCZT/6cz8SBiEPGEM0c8BGeObDZPAlxPx9eHFO1XEnzyhX6hdG5sVIxMs/s9Yk7XTGF8VfFe6M3P/YniDqXTIkYMqdpFmUXRW8QXN3U=
