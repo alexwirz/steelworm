@@ -4,5 +4,6 @@ node_js:
 deploy:
   app: steelworm
   provider: heroku
-  api_key:
-    secure: "lOsL6FFQpjVC6ihrm28Z9tY6OblZKCR1I+XCBQXMbDToCmxkGSW4RHfUcCzjRdadGN7880w5kcyTowqU1f7MSyWIrN5sO+RgdJ/bvhpzgKkpRikB6c7RsUm4RFINfvk9nLs8yfMd2x4Cio1BTLVpYA6FeWzR7B2m2QMMcuUa7qg="
+env:
+  global:
+    - secure: "lOsL6FFQpjVC6ihrm28Z9tY6OblZKCR1I+XCBQXMbDToCmxkGSW4RHfUcCzjRdadGN7880w5kcyTowqU1f7MSyWIrN5sO+RgdJ/bvhpzgKkpRikB6c7RsUm4RFINfvk9nLs8yfMd2x4Cio1BTLVpYA6FeWzR7B2m2QMMcuUa7qg="
