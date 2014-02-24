@@ -9,7 +9,8 @@
     "npm": "1.2.x"
   },
   "scripts": {
-    "test": "./node_modules/mocha/bin/mocha"
+    "test": "./node_modules/mocha/bin/mocha",
+    "predeploy": "echo predeploy"
   },
   "devDependencies": {
     "mocha": "1.15.1"
