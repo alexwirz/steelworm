@@ -7,5 +7,11 @@
   "engines": {
     "node": "0.10.x",
     "npm": "1.2.x"
+  },
+  "scripts": {
+    "test": "./node_modules/mocha/bin/mocha"
+  },
+  "devDependencies": {
+    "mocha": "1.15.1"
   }
 }
