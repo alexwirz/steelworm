@@ -6,7 +6,7 @@ var fs = require("fs")
 var geoip = require('geoip');
 
 app.get('/', function(request, response) {
-  response.send('Hello World!');
+  response.send('Selber Hello!');
 });
 
 app.post('/', function(request, response) {
