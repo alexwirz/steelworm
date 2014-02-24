@@ -5,4 +5,4 @@ deploy:
   app: steelworm
   provider: heroku
   api_key:
-    secure: J0CtEw5cr8HAwtrkuK46DntgO7R3m3XCg5LdfbCHK6duNvFU4KpYixz2rsOBjuUD0vVI4c8CGM6XsYVFb4G3X5VmvMrFEUywo3+JIBcepXrJjWXGtf0dJfMYb/BQu3lRXoELePaFu70AV2NxwYRTP9ehTpfeeLoAI1S3lNP1meA=
+    secure: "lOsL6FFQpjVC6ihrm28Z9tY6OblZKCR1I+XCBQXMbDToCmxkGSW4RHfUcCzjRdadGN7880w5kcyTowqU1f7MSyWIrN5sO+RgdJ/bvhpzgKkpRikB6c7RsUm4RFINfvk9nLs8yfMd2x4Cio1BTLVpYA6FeWzR7B2m2QMMcuUa7qg="
