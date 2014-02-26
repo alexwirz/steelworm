@@ -102,13 +102,10 @@ app.get('/gh-oauth-callback',
 });
 
 app.configure(function() {
-  app.use(express.static('public'));
-  app.use(express.cookieParser());
-  app.use(express.bodyParser());
-  app.use(express.session({ secret: 'keyboard cat' }));
-  app.use(passport.initialize());
-  app.use(passport.session());
-  app.use(app.router);
+	app.use(express.static(__dirname + '/public'));
+	app.use(passport.initialize());
+	app.use(passport.session());
+	app.use(app.router);
 });
 
 var port = process.env.PORT || 5000;
