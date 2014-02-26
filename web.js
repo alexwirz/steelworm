@@ -25,6 +25,13 @@ passport.use(new GitHubStrategy({
   }
 ));
 
+app.configure(function() {
+	app.use(express.static(__dirname + '/public'));
+	app.use(passport.initialize());
+	app.use(passport.session());
+	app.use(app.router);
+});
+
 app.get('/', function(request, response) {
   response.send('Selber Hello!');
 });
@@ -99,13 +106,6 @@ app.get('/gh-oauth-callback',
   function(req, res) {
   	console.log ('auth callback: redirecting...')
     res.redirect('/');
-});
-
-app.configure(function() {
-	app.use(express.static(__dirname + '/public'));
-	app.use(passport.initialize());
-	app.use(passport.session());
-	app.use(app.router);
 });
 
 var port = process.env.PORT || 5000;
