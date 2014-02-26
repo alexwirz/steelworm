@@ -42,7 +42,7 @@ app.configure(function() {
 });
 
 app.get('/', function(request, response) {
-	var name = request.user;
+	//var name = request.user;
 	console.log ('/ request.user : ' + request.user);
   response.send('Welcome ...!');
 });
