@@ -33,7 +33,7 @@ passport.deserializeUser(function(obj, done) {
 
 app.configure(function() {
 	app.use (express.cookieParser());
-	app.use (express.cookieSession ({secret : 'V3ryS3cr3tSh!t!'}));
+	app.use (express.cookieSession ({secret : 'V3ryS3cr3tSh!t!', cookie: { maxAge: 60 * 1000 }}));
   	app.use (express.bodyParser());
   	app.use (express.logger ());
 	app.use (passport.initialize());
