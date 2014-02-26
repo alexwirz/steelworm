@@ -42,7 +42,7 @@ app.configure(function() {
 });
 
 app.get('/', function(request, response) {
-	var username = request.session.username;
+	var username = request.session.passport.user;
 	if (!username) response.redirect ('/login');
 	console.log (request.session);
 	console.log ('isAuthenticated: ' + request.isAuthenticated ());
@@ -81,9 +81,8 @@ app.get('/gh-oauth-callback',
   passport.authenticate('github', { failureRedirect: '/login' }),
   function(req, res) {
   	console.log ('auth callback: redirecting...')
- 	console.log ('isAuthenticated: ' + req.isAuthenticated ());
     console.log ('gh-oauth-callback... user :  ' + req.user);
-    req.session.username = req.user;
+    //req.session.username = req.user;
     res.redirect('/');
 });
 
