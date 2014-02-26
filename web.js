@@ -101,7 +101,15 @@ app.get('/gh-oauth-callback',
     res.redirect('/');
 });
 
-app.use(passport.initialize());
+app.configure(function() {
+  app.use(express.static('public'));
+  app.use(express.cookieParser());
+  app.use(express.bodyParser());
+  app.use(express.session({ secret: 'keyboard cat' }));
+  app.use(passport.initialize());
+  app.use(passport.session());
+  app.use(app.router);
+});
 
 var port = process.env.PORT || 5000;
 app.listen(port, function() {
