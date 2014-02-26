@@ -19,6 +19,7 @@ passport.use(new GitHubStrategy({
       // to associate the GitHub account with a user record in your database,
       // and return that user instead.
       console.log ('welcome ' + profile.username + '!');
+      req.session.username = profile.username;
       return done(null, profile.username);
     });
   }
@@ -33,15 +34,12 @@ passport.deserializeUser(function(obj, done) {
 });
 
 app.configure(function() {
-	app.use(express.static(__dirname + '/public'));
-	app.use(express.cookieParser());
-  	app.use(express.bodyParser());
+	app.use (express.cookieParser());
+	app.use (express.cookieSession ({secret : 'V3ryS3cr3tSh!t!'}));
+  	app.use (express.bodyParser());
   	app.use (express.logger ());
-  	//app.use(express.methodOverride());
-  	//app.use(express.session({ secret: 'keyboard cat' }));
-	app.use(passport.initialize());
-	app.use(passport.session());
-	app.use(app.router);
+	app.use (passport.initialize());
+	app.use (app.router);
 });
 
 app.get('/', function(request, response) {
