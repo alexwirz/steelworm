@@ -1,9 +1,29 @@
 var express = require("express");
+var passport = require ("passport");
+var GitHubStrategy = require ('passport-github').Strategy;
 var app = express();
 app.use(express.logger());
 app.use(express.bodyParser());
 var fs = require("fs")
 var geoip = require('geoip');
+
+passport.use(new GitHubStrategy({
+    clientID: '139369522cd1d37bb51f',
+    clientSecret: '4311d291fda987b489b3b992d3a8727030383c89',
+    callbackURL: 'http://steelworm.herokuapp.com/gh-oauth-callback'
+  },
+  function(accessToken, refreshToken, profile, done) {
+    // asynchronous verification, for effect...
+    process.nextTick(function () {
+      
+      // To keep the example simple, the user's GitHub profile is returned to
+      // represent the logged-in user.  In a typical application, you would want
+      // to associate the GitHub account with a user record in your database,
+      // and return that user instead.
+      return done(null, profile);
+    });
+  }
+));
 
 app.get('/', function(request, response) {
   response.send('Selber Hello!');
@@ -59,33 +79,26 @@ app.get('/login', function(request, response) {
 	});
 });
 
-app.get ('/gh-oauth', function (request, response){
-	var idpGithub = require('idp-github')(
-		{ clientId: '139369522cd1d37bb51f',
-		clientSecret: '4311d291fda987b489b3b992d3a8727030383c89',
-		redirectUri: 'http://steelworm.herokuapp.com/gh-login' });
-
-	// Get the auth URL to redirect the user for OAuth2 login
-	var code = idpGithub.authUrl({ state: 'super important stuff' });
-	console.log ('code : ' + code);
-
-	// Using the code provided in the query string upon return to your web app, get the identity:
-	idpGithub.identity(code, function (err, identity) {
-		if (err) {
-			console.error('login with github failed!');
-			console.log ('err: ' + JSON.stringify(err));
-			throw err;
-		} else {
-			response.send ('Hello, ' + identity.name);
-			response.end ();
-		}
-	});
+//   Use passport.authenticate() as route middleware to authenticate the
+//   request.  The first step in GitHub authentication will involve redirecting
+//   the user to github.com.  After authorization, GitHubwill redirect the user
+//   back to this application at /auth/github/callback
+app.get('/gh-oauth',
+  passport.authenticate('github'),
+  function(req, res){
+    // The request will be redirected to GitHub for authentication, so this
+    // function will not be called.
 });
 
-app.get ('/gh-login', function (request, response) {
-	response.write ('gh-login called...');
-	response.write ('request : ' + JSON.stringify(request.body));
-	response.end ();
+//   Use passport.authenticate() as route middleware to authenticate the
+//   request.  If authentication fails, the user will be redirected back to the
+//   login page.  Otherwise, the primary route function function will be called,
+//   which, in this example, will redirect the user to the home page.
+app.get('/gh-oauth-callback', 
+  passport.authenticate('github', { failureRedirect: '/login' }),
+  function(req, res) {
+  	console.log ('auth callback: redirecting...')
+    res.redirect('/');
 });
 
 var port = process.env.PORT || 5000;
