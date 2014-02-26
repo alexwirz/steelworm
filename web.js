@@ -42,11 +42,11 @@ app.configure(function() {
 });
 
 app.get('/', function(request, response) {
-	//var name = request.user;
-	console.log ('/ request.user : ' + request.user);
+	var username = request.session.username;
+	if (!username) response.redirect ('/login');
+	console.log (request.session);
 	console.log ('isAuthenticated: ' + request.isAuthenticated ());
-  response.send ('Welcome ...!');
-  response.send ('isAuthenticated: ' + request.isAuthenticated ());
+	response.send ('welcome ' + username + '!');
 });
 
 app.post('/', function(request, response) {
