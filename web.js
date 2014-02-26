@@ -26,6 +26,14 @@ passport.use(new GitHubStrategy({
   }
 ));
 
+passport.serializeUser(function(user, done) {
+  done(null, user);
+});
+
+passport.deserializeUser(function(obj, done) {
+  done(null, obj);
+});
+
 app.configure(function() {
 	app.use(express.static(__dirname + '/public'));
 	app.use(passport.initialize());
