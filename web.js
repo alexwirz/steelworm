@@ -119,7 +119,8 @@ app.get('/gh-oauth-callback',
   function(req, res) {
   	console.log ('auth callback: redirecting...')
  	console.log ('isAuthenticated: ' + req.isAuthenticated ());
-    console.log ('user :  ' + req.user);
+    console.log ('gh-oauth-callback... user :  ' + req.user);
+    req.session.username = req.user;
     res.redirect('/');
 });
 
