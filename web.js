@@ -2,8 +2,6 @@ var express = require("express");
 var passport = require ("passport");
 var GitHubStrategy = require ('passport-github').Strategy;
 var app = express();
-app.use(express.logger());
-app.use(express.bodyParser());
 var fs = require("fs");
 var geoip = require('geoip');
 
@@ -38,6 +36,7 @@ app.configure(function() {
 	app.use(express.static(__dirname + '/public'));
 	app.use(express.cookieParser());
   	app.use(express.bodyParser());
+  	app.use (express.logger ());
   	//app.use(express.methodOverride());
   	//app.use(express.session({ secret: 'keyboard cat' }));
 	app.use(passport.initialize());
