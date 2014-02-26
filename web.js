@@ -83,7 +83,7 @@ app.get ('/gh-oauth', function (request, response){
 
 app.get ('/gh-login', function (request, response) {
 	response.write ('gh-login called...');
-	response.write ('request : ' + JSON.stringify (request));
+	response.write ('request : ' + request.body);
 	response.end ();
 });
 
