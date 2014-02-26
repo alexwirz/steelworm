@@ -19,7 +19,6 @@ passport.use(new GitHubStrategy({
       // to associate the GitHub account with a user record in your database,
       // and return that user instead.
       console.log ('welcome ' + profile.username + '!');
-      req.session.username = profile.username;
       return done(null, profile.username);
     });
   }
@@ -120,6 +119,7 @@ app.get('/gh-oauth-callback',
   function(req, res) {
   	console.log ('auth callback: redirecting...')
  	console.log ('isAuthenticated: ' + req.isAuthenticated ());
+    console.log ('user :  ' + req.user);
     res.redirect('/');
 });
 
