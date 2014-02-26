@@ -2,7 +2,7 @@ var express = require("express");
 var passport = require ("passport");
 var GitHubStrategy = require ('passport-github').Strategy;
 var app = express();
-//app.use(express.logger());
+app.use(express.logger());
 //app.use(express.bodyParser());
 var fs = require("fs");
 var geoip = require('geoip');
