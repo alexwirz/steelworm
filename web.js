@@ -61,7 +61,7 @@ app.get('/login', function(request, response) {
 
 app.get ('/gh-oauth', function (request, response){
 	var idpGithub = require('idp-github')(
-		{ clientID: '139369522cd1d37bb51f',
+		{ clientId: '139369522cd1d37bb51f',
 		clientSecret: '4311d291fda987b489b3b992d3a8727030383c89',
 		redirectUri: 'http://steelworm.herokuapp.com/gh-login' });
 
