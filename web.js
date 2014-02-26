@@ -81,10 +81,10 @@ app.get ('/gh-oauth', function (request, response){
 	});
 });
 
-//app.get ('/gh-login', function (request, response) {
-//	response.write ('gh-login called...');
-//	response.end ();
-//});
+app.get ('/gh-login', function (request, response) {
+	response.write ('gh-login called...');
+	response.end ();
+});
 
 var port = process.env.PORT || 5000;
 app.listen(port, function() {
