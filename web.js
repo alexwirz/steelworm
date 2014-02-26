@@ -44,7 +44,8 @@ app.configure(function() {
 app.get('/', function(request, response) {
 	//var name = request.user;
 	console.log ('/ request.user : ' + request.user);
-  response.send('Welcome ...!');
+	console.log ('isAuthenticated: ' + request.isAuthenticated ());
+  response.send ('Welcome ...!');
   response.send ('isAuthenticated: ' + request.isAuthenticated ());
 });
 
