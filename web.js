@@ -77,9 +77,9 @@ app.get ('/gh-oauth', function (request, response){
 			throw err;
 		} else {
 			response.send ('Hello, ' + identity.name);
+			response.end ();
 		}
 	});
-	response.end ();
 });
 
 app.get ('/gh-login', function (request, response) {
