@@ -21,7 +21,6 @@ passport.use(new GitHubStrategy({
       // to associate the GitHub account with a user record in your database,
       // and return that user instead.
       console.log ('welcome ' + profile.username + '!');
-     console.log ('isAuthenticated: ' + request.isAuthenticated ());
       return done(null, profile.username);
     });
   }
