@@ -38,7 +38,7 @@ app.configure(function() {
 	app.use(express.static(__dirname + '/public'));
 	app.use(express.cookieParser());
   	app.use(express.bodyParser());
-  	//app.use(express.methodOverride());
+  	app.use(express.methodOverride());
   	app.use(express.session({ secret: 'keyboard cat' }));
 	app.use(passport.initialize());
 	app.use(passport.session());
