@@ -38,14 +38,19 @@ app.configure(function() {
   	app.use (express.logger ());
 	app.use (passport.initialize());
 	app.use (app.router);
+	app.set("views", __dirname + "/views");
+	app.set("view engine", "jade");
 });
 
 app.get('/', function(request, response) {
 	var username = request.session.passport.user;
-	if (!username) response.redirect ('/login');
-	console.log (request.session);
-	console.log ('isAuthenticated: ' + request.isAuthenticated ());
-	response.send ('welcome ' + username + '!');
+	if (!username) username = '';
+	console.log (username);
+	//if (!username) response.redirect ('/login');
+	//console.log (request.session);
+	//console.log ('isAuthenticated: ' + request.isAuthenticated ());
+	//response.send ('welcome ' + username + '!');
+	response.render ('index', {username : username});
 });
 
 app.get('/login', function(request, response) {

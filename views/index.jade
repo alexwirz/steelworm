@@ -1,0 +1,7 @@
+html
+	body
+		if !username
+			h2 Welcome!
+			a(href='./gh-oauth') Please login with GitHub!
+		else
+			h2 Hello, #username!
