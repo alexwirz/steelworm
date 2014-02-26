@@ -53,6 +53,10 @@ app.get('/', function(request, response) {
 	response.render ('index', {username : username});
 });
 
+app.get('/cookie-test', function (request, response){
+	response.send (request.session.passport.user);
+});
+
 app.get('/login', function(request, response) {
 	// 90-er! ;)
 	fs.readFile('./login-with-github.html', function (err, html) {
