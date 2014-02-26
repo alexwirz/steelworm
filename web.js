@@ -118,7 +118,7 @@ app.get('/gh-oauth-callback',
   passport.authenticate('github', { failureRedirect: '/login' }),
   function(req, res) {
   	console.log ('auth callback: redirecting...')
- 	console.log ('isAuthenticated: ' + request.isAuthenticated ());
+ 	console.log ('isAuthenticated: ' + req.isAuthenticated ());
     res.redirect('/');
 });
 
