@@ -4,8 +4,8 @@ var GitHubStrategy = require ('passport-github').Strategy;
 var app = express();
 
 passport.use(new GitHubStrategy({
-    clientID: process.env.GH_CLIENT_ID,
-    clientSecret: process.env.GH_CLIENT_SECRET,
+    clientID: process.env.GH_CLIENT_ID || 'default',
+    clientSecret: process.env.GH_CLIENT_SECRET || 'default',
     callbackURL: 'http://steelworm.herokuapp.com/gh-oauth-callback'
   },
   function(accessToken, refreshToken, profile, done) {
