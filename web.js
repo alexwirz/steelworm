@@ -11,13 +11,7 @@ passport.use(new GitHubStrategy({
   },
   function(accessToken, refreshToken, profile, done) {
     // asynchronous verification, for effect...
-    process.nextTick(function () {
-      
-      // To keep the example simple, the user's GitHub profile is returned to
-      // represent the logged-in user.  In a typical application, you would want
-      // to associate the GitHub account with a user record in your database,
-      // and return that user instead.
-      console.log ('welcome ' + profile.username + '!');
+    process.nextTick(function () {      
       return done(null, profile.username);
     });
   }
@@ -43,31 +37,11 @@ app.configure(function() {
 });
 
 app.get('/', function(request, response) {
-	var username = request.session.passport.user;
-	if (!username) username = '';
-	console.log (username);
-	//if (!username) response.redirect ('/login');
-	//console.log (request.session);
-	//console.log ('isAuthenticated: ' + request.isAuthenticated ());
-	//response.send ('welcome ' + username + '!');
-	response.render ('index', {username : username});
+	response.render ('index', {username : request.session.passport.user});
 });
 
 app.get('/cookie-test', function (request, response){
 	response.send (request.session.passport.user);
-});
-
-app.get('/login', function(request, response) {
-	// 90-er! ;)
-	fs.readFile('./login-with-github.html', function (err, html) {
-		if (err) {
-			throw err;
-		}
-
-		response.setHeader ("Content-Type", "text/html");
-		response.send (html);
-		response.end ();
-	});
 });
 
 //   Use passport.authenticate() as route middleware to authenticate the
@@ -86,11 +60,10 @@ app.get('/gh-oauth',
 //   login page.  Otherwise, the primary route function function will be called,
 //   which, in this example, will redirect the user to the home page.
 app.get('/gh-oauth-callback', 
-  passport.authenticate('github', { failureRedirect: '/login' }),
+  passport.authenticate('github', { failureRedirect: '/' }),
   function(req, res) {
   	console.log ('auth callback: redirecting...')
     console.log ('gh-oauth-callback... user :  ' + req.user);
-    //req.session.username = req.user;
     res.redirect('/');
 });
 
