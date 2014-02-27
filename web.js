@@ -24,26 +24,10 @@ passport.deserializeUser(function(obj, done) {
   done(null, obj);
 });
 
-function randomString(length, chars) {
-    var mask = '';
-    if (chars.indexOf('a') > -1) mask += 'abcdefghijklmnopqrstuvwxyz';
-    if (chars.indexOf('A') > -1) mask += 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    if (chars.indexOf('#') > -1) mask += '0123456789';
-    if (chars.indexOf('!') > -1) mask += '~`!@#$%^&*()_+-={}[]:";\'<>?,./|\\';
-    var result = '';
-    for (var i = length; i > 0; --i) result += mask[Math.round(Math.random() * (mask.length - 1))];
-    return result;
-}
-
-function sessionKey () {
-	var sessionKey = randomString (32, 'aA#!');
-	console.log ('sessionKey : ' + sessionKey);
-	return sessionKey;
-}
-
 app.configure(function() {
 	app.use (express.cookieParser());
-	app.use (express.cookieSession ({secret : sessionKey (), cookie: { maxAge: 60 * 1000 }}));
+	var sessionSecret = require ('./sessionSecret');
+	app.use (express.cookieSession ({secret : sessionSecret.newSessionSecret (), cookie: { maxAge: 60 * 1000 }}));
   	app.use (express.bodyParser());
   	app.use (express.logger ());
 	app.use (passport.initialize());
